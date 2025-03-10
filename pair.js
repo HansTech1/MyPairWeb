@@ -64,21 +64,19 @@ router.get('/', async (req, res) => {
                         }
 
                         const mega_url = await upload(fs.createReadStream(auth_path + 'creds.json'), `${randomMegaId()}.json`);
+                        const sid = mega_url.replace('https://mega.nz/file/', '');
 
-                        const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        const sid = string_session;
-
-                        // Send first WhatsApp message with "HansMd~"
+                        // First message: HansMd~<sid>
                         await PrabathPairWeb.sendMessage(user_jid, {
-                            text: "HansMd~"
+                            text: `HansMd~${sid}`
                         });
 
                         // Wait a moment before sending the next message
-                        await delay(1000);
+                        await delay(2000);
 
-                        // Send second WhatsApp message with the session id info
+                        // Second message: Stylish confirmation message
                         await PrabathPairWeb.sendMessage(user_jid, {
-                            text: `The session id ${sid} of HANS BYTE MD has successfully been connected`
+                            text: `✅ *HANS BYTE MD IS NOW CONNECTED!*\n\n🔑 *Session ID:* ${sid}\n\n🚀 Get ready for a powerful experience!`
                         });
 
                     } catch (e) {
