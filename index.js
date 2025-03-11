@@ -1,20 +1,33 @@
 const express = require('express');
-const app = express();
-__path = process.cwd()
+const path = require('path');
 const bodyParser = require("body-parser");
+
+const app = express();
 const PORT = process.env.PORT || 8000;
-let code = require('./pair');
+const code = require('./pair');
+
 require('events').EventEmitter.defaultMaxListeners = 500;
-app.use('/code', code);
 
-app.use('/',async (req, res, next) => {
-res.sendFile(__path + '/pair.html')
-})
-
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(PORT, () => {
-    console.log(`⏩ Server running on http://localhost:` + PORT)
-})
 
-module.exports = app
+// Serve index.html as the main page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Serve pair.html at /pair
+app.get('/pair', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pair.html'));
+});
+
+// Routes
+app.use('/code', code);
+
+// Start Server
+app.listen(PORT, () => {
+    console.log(`⏩ Server running on http://127.0.0.1:${PORT}`);
+});
+
+module.exports = app;
