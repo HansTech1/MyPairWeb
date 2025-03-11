@@ -1,209 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PAIR CODE</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Hans Pair</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
+      background: url('https://i.ibb.co/FLSgNhW9/Free.png') no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Orbitron', sans-serif;
       color: #fff;
-      background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-      background-size: 400% 400%;
-      animation: backgroundAnimation 10s infinite alternate;
       overflow: hidden;
     }
 
-    @keyframes backgroundAnimation {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 255, 252, 0.5);
       text-align: center;
-    }
-
-    .box {
-      width: 320px;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+      max-width: 400px;
+      width: 100%;
+      transition: transform 0.3s;
       backdrop-filter: blur(10px);
-      animation: float 3s infinite alternate ease-in-out;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(10px); }
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 40px rgba(0, 255, 252, 0.8);
     }
 
-    h3, h6 {
-      color: cyan;
-      text-shadow: 0 0 10px cyan;
+    h5 {
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      font-size: 1.4rem;
+      font-weight: 500;
+      background: linear-gradient(45deg, #00fffc, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .input-container {
       display: flex;
-      background: #111;
-      border-radius: 1rem;
-      padding: 0.4rem;
-      max-width: 300px;
-      width: 100%;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px #00fffc;
     }
 
     .input-container input {
-      width: 80%;
-      padding: 1rem;
-      background: transparent;
       border: none;
-      outline: none;
-      color: cyan;
+      padding: 1rem;
+      background: none;
+      color: #fff;
+      flex: 1;
       font-size: 1rem;
-      text-align: center;
-    }
-
-    .input-container input::placeholder {
-      color: rgba(0, 255, 255, 0.5);
     }
 
     .input-container button {
-      width: 20%;
-      background: cyan;
+      background: linear-gradient(45deg, #ff00ff, #00fffc);
+      color: white;
       border: none;
-      color: #000;
-      font-weight: bold;
-      text-transform: uppercase;
+      padding: 1rem;
       cursor: pointer;
-      transition: 0.3s;
-      border-radius: 0 1rem 1rem 0;
+      transition: transform 0.3s;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .input-container button:hover {
-      background: #0ff;
-      box-shadow: 0 0 10px cyan;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 255, 252, 0.8);
     }
 
-    #loading-spinner {
-      display: none;
-      color: cyan;
-      margin-top: 10px;
-      font-size: 1.5rem;
+    .scan-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent 0%, rgba(0, 255, 252, 0.5) 50%, transparent 100%);
+      animation: scan 4s linear infinite;
     }
 
-    #pair {
-      margin-top: 20px;
-    }
-
-    .glow-button {
-      display: block;
-      background: transparent;
-      color: cyan;
-      font-size: 1rem;
-      padding: 10px 20px;
-      margin-top: 20px;
-      border: 2px solid cyan;
-      text-align: center;
-      text-transform: uppercase;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-
-    .glow-button:hover {
-      background: cyan;
-      color: #000;
-      box-shadow: 0 0 15px cyan;
-    }
-
-    @media (max-width: 500px) {
-      .input-container {
-        flex-direction: column;
-      }
-      .input-container input, .input-container button {
-        width: 100%;
-        border-radius: 5px;
-      }
+    @keyframes scan {
+      0% { top: -50%; }
+      100% { top: 150%; }
     }
   </style>
 </head>
 <body>
+  <div class="scan-line"></div>
   <div class="container">
-    <div class="box" id="box">
-      <h3>🔗 Link with Phone Number</h3>
-      <h6>🔢 Enter your number with country code.</h6>
-      <div class="input-container">
-        <input placeholder="+92346xxxxxx" type="number" id="number">
-        <button id="submit">✔</button>
-      </div>
-
-      <div id="loading-spinner">
-        <i class="fas fa-spinner fa-spin"></i>
-      </div>
-
-      <main id="pair"></main>
-
-      <!-- WhatsApp Button -->
-      <a href="https://whatsapp.com/channel/0029VasNvD33mFXwqrkFzZ3u" target="_blank">
-        <button class="glow-button">Join WhatsApp Channel</button>
-      </a>
+    <h5>PAIR CODE BY HANS TECH 🌟</h5>
+    <h5>ENTER PHONE NUMBER WITH COUNTRY CODE 🧹</h5>
+    <div class="input-container">
+      <input type="text" id="number" placeholder="+1234567890">
+      <button id="submit">SEND</button>
     </div>
+    <div id="pair"></div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
   <script>
-    let pairDisplay = document.getElementById("pair");
-    let submitBtn = document.getElementById("submit");
-    let numberInput = document.getElementById("number");
-
-    async function copyToClipboard() {
-      let codeElement = document.getElementById("copy");
-      if (codeElement) {
-        let codeText = codeElement.innerText.replace("CODE: ", "");
-        await navigator.clipboard.writeText(codeText);
-        codeElement.innerText = "✔️ COPIED";
-        setTimeout(() => { codeElement.innerText = "CODE: " + codeText; }, 800);
-      }
-    }
-
-    submitBtn.addEventListener("click", async (e) => {
+    document.getElementById("submit").addEventListener("click", async (e) => {
       e.preventDefault();
-      let phoneNumber = numberInput.value.replace(/[^0-9]/g, "");
-
-      if (!phoneNumber || phoneNumber.length < 11) {
-        pairDisplay.innerHTML = `<p style="color: red;">❗ Invalid number format. Try again.</p>`;
+      const number = document.getElementById("number").value.replace(/[^0-9]/g, "");
+      if (number.length < 10) {
+        document.getElementById("pair").innerHTML = '<span style="color:#ff4081;">Wrong Number Format</span>';
         return;
       }
-
-      numberInput.value = "+" + phoneNumber;
-      numberInput.style.color = "cyan";
-      document.getElementById("loading-spinner").style.display = "block";
-      pairDisplay.innerHTML = "";
-
+      document.getElementById("pair").innerHTML = '<span style="color:#03a9f4;">Processing...</span>';
       try {
-        let response = await axios.get(`/code?number=${phoneNumber}`);
-        let code = response.data.code || "❗ Service Unavailable";
-        pairDisplay.innerHTML = `<p id="copy" onclick="copyToClipboard()" style="color: red; cursor: pointer;">CODE: <span style="color: cyan;">${code}</span></p>`;
-      } catch (error) {
-        pairDisplay.innerHTML = `<p style="color: red;">❗ Error fetching code.</p>`;
-      } finally {
-        document.getElementById("loading-spinner").style.display = "none";
+        const { data } = await axios.get(`/code?number=${number}`);
+        const code = data.code || "Service Unavailable";
+        document.getElementById("pair").innerHTML = `
+          <span style="color:#ff4081;">CODE: ${code}</span>
+          <button id="copy">Copy</button>
+        `;
+        document.getElementById("copy").addEventListener("click", () => {
+          navigator.clipboard.writeText(code);
+          alert("Code copied to clipboard!");
+        });
+      } catch {
+        document.getElementById("pair").innerHTML = '<span style="color:#ff4081;">Error, please try again.</span>';
       }
     });
   </script>
