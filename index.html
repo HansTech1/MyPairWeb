@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="./img/Hans-Xmd.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hans Pair 🌟</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: url('https://i.ibb.co/b6FNf6M/8cbf0b47-fd5f-4044-a133-56b6decadcfc.jpg') no-repeat center center/cover;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 1;
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 25px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .btn {
+      position: relative;
+      width: 250px;
+      padding: 15px 30px;
+      background: transparent;
+      border: 3px solid #ffffff;
+      border-radius: 15px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      cursor: pointer;
+      overflow: hidden;
+      margin: 15px;
+      text-align: center;
+      transition: all 0.4s ease-in-out;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 350%;
+      height: 350%;
+      background: linear-gradient(45deg, rgba(255, 20, 147, 0.5), rgba(0, 191, 255, 0.5));
+      transition: transform 0.4s, opacity 0.4s;
+      transform: translate(-50%, -50%) rotate(45deg);
+      z-index: 0;
+      opacity: 0.5;
+      border-radius: 50%;
+    }
+
+    .btn:hover {
+      color: #000;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 20px rgba(255, 20, 147, 1), 0 0 30px rgba(0, 191, 255, 1);
+      transform: scale(1.1);
+    }
+
+    .btn:hover::before {
+      transform: translate(-50%, -50%) rotate(0deg);
+      opacity: 0.9;
+    }
+
+    .btn:active {
+      filter: brightness(0.6);
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        width: 200px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button onclick="window.open('/pair', '_self')" class="btn">PAIR CODE</button>
+    <button onclick="window.open('https://github.com/HAROLDMTH', '_blank')" class="btn">GitHub</button>
+    <button onclick="window.open('https://youtube.com/@HANSTECH0', '_blank')" class="btn">YouTube</button>
+    <button onclick="window.open('https://t.me/HANS-TECH2', '_blank')" class="btn">Telegram</button>
+    <button onclick="window.open('https://www.instagram.com/HAROLDMTH?igsh=MXF3OHgzcnJsZzhqNQ==', '_blank')" class="btn">Instagram</button>
+  </div>
+</body>
+</html>
